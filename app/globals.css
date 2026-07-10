@@ -69,3 +69,20 @@ button {
 img {
   user-select: none;
 }
+
+canvas {
+  display: block;
+}
+
+body {
+  background: radial-gradient(circle at center, #09090b 0%, #050505 70%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 45%, rgba(0, 0, 0, 0.55));
+  z-index: 5;
+}

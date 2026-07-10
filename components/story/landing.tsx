@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import MouseGlow from "./MouseGlow";
+import ParticleBackground from "./ParticleBackground";
+import RevealText from "./RevealText";
 
 export default function Landing() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +53,7 @@ export default function Landing() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050505] px-6">
       <MouseGlow />
+      <ParticleBackground />
 
       <div className="absolute inset-0">
         <motion.div
@@ -86,38 +89,28 @@ export default function Landing() {
           365
         </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-12 space-y-8 text-xl leading-relaxed text-zinc-300 md:text-3xl"
-        >
-          <p>
-            Exactly one year ago,
-            <br />
-            you were just another person
-            <br />
-            I&apos;d yet to know.
-          </p>
+        <div className="mt-12 space-y-10 text-center">
+          <RevealText
+            delay={0.5}
+            className="text-xl leading-relaxed text-zinc-300 md:text-3xl"
+          >
+            Exactly one year ago, you were just another person I&apos;d yet to know.
+          </RevealText>
 
-          <p>
-            Today...
-            <br />
-            you&apos;re one of the people
-            <br />
-            I trust the most.
-          </p>
+          <RevealText
+            delay={1.5}
+            className="text-xl leading-relaxed text-zinc-300 md:text-3xl"
+          >
+            Today... you&apos;re one of the people I trust the most.
+          </RevealText>
 
-          <p className="text-lg text-zinc-500 md:text-xl">
-            Funny how an ordinary year
-            <br />
-            quietly became
-            <br />
-            one of the most beautiful
-            <br />
-            chapters of my life.
-          </p>
-        </motion.div>
+          <RevealText
+            delay={2.5}
+            className="text-lg leading-relaxed text-zinc-500 md:text-xl"
+          >
+            Funny how an ordinary year quietly became one of the most beautiful chapters of my life.
+          </RevealText>
+        </div>
 
         <motion.button
           onClick={scrollNext}
