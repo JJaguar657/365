@@ -214,7 +214,7 @@ export const story = {
   },
   finale: {
     // Replace this with her actual name.
-    name: "Her Name",
+    name: "Pranali",
     chapter: "The Final Chapter",
     duration: "15 months.",
     memories: [
@@ -248,7 +248,7 @@ export const story = {
     divider: "∞",
     finalBirthdaySuffix: ".",
     thanks: "Thank you for existing.",
-    chapterTwo: "See you in Chapter Two.",
+    chapterTwo: "See you in Season Two.",
   },
 } as const;
 
