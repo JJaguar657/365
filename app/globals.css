@@ -86,3 +86,24 @@ body::after {
   background: radial-gradient(circle, transparent 45%, rgba(0, 0, 0, 0.55));
   z-index: 5;
 }
+
+/* Floating bouquet */
+
+@keyframes sway {
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+.bouquet {
+  animation: sway 8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
