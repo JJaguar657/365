@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  background: #050505;
+
+  color: #fafafa;
+
+  font-family: var(--font-sans);
+
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #fb7185;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  user-select: none;
+}
