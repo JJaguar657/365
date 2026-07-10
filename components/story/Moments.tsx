@@ -2,29 +2,8 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
-
-const memories = [
-  {
-    emoji: "📞",
-    title: "The Calls",
-    text: "There were so many days when everything felt a little overwhelming. And somehow, almost magically, your call would come. Sometimes you wanted to hear me, sometimes you just wanted to share your own day. You probably never realized it, but every conversation reminded me that my existence mattered to someone.",
-  },
-  {
-    emoji: "😂",
-    title: "The Laughter",
-    text: "You making the weirdest expressions and me acting like the dumbest person alive somehow became our favorite comedy show. We laughed at each other far more than we laughed at jokes, and I honestly wouldn't trade those moments for anything.",
-  },
-  {
-    emoji: "🌱",
-    title: "The Pride",
-    text: "Watching you choose singing, creating content, following your niyamas, and becoming more like yourself has been one of my favorite things to witness. I don't just admire your achievements—I admire the person you're becoming.",
-  },
-  {
-    emoji: "🤍",
-    title: "The Fights",
-    text: "We weren't perfect. We argued. Sometimes I hurt your incredibly pure heart, and I still wish I could take those moments back. But what makes me grateful is that every single time, we chose understanding over ego and our friendship over winning.",
-  },
-];
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function Moments() {
   return (
@@ -38,22 +17,22 @@ export default function Moments() {
           viewport={{ once: true }}
           className="text-center uppercase tracking-[0.45em] text-zinc-500"
         >
-          Chapter VII
+          {story.moments.chapter}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-6 text-center font-serif text-6xl md:text-8xl"
+          className="mt-6 text-center font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Moments
+          {story.moments.title}
         </motion.h2>
 
         <div className="mt-24 space-y-10">
-          {memories.map((memory, index) => (
+          {story.moments.items.map((memory, index) => (
             <motion.div
-              key={memory.title}
+              key={memory.id}
               initial={{
                 opacity: 0,
                 y: 40,
@@ -89,15 +68,19 @@ export default function Moments() {
           className="mx-auto mt-24 max-w-3xl text-center"
         >
           <p className="font-serif text-4xl leading-relaxed text-white md:text-5xl">
-            Maybe these were just moments.
+            {story.moments.closingTitle}
           </p>
 
           <p className="mt-8 text-2xl leading-relaxed text-zinc-400">
-            But together...
+            {story.moments.closingLines[0]}
             <br />
-            they became fifteen beautiful months.
+            {story.moments.closingLines[1]}
           </p>
         </motion.div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.moments.next} />
+        </div>
       </div>
     </Section>
   );

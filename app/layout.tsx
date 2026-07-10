@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { Inter, Cormorant_Garamond } from "next/font/google";
+import { story } from "@/content/story";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,8 +14,8 @@ const serif = Cormorant_Garamond({
 });
 
 export const metadata = {
-  title: "365",
-  description: "A story of one unforgettable year.",
+  title: story.site.title,
+  description: story.site.description,
 };
 
 export default function RootLayout({

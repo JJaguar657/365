@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@source "../app";
+@source "../components";
+
 /* Smooth rendering */
 
 html {
@@ -60,6 +63,14 @@ h2,
 h3,
 h4 {
   font-family: var(--font-serif);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  overflow-wrap: anywhere;
 }
 
 button {

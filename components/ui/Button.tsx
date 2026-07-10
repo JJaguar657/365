@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/cn";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+type Props = HTMLMotionProps<"button">;
 
 export default function Button({
   className,

@@ -2,33 +2,8 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
-
-const milestones = [
-  {
-    year: "🎤",
-    title: "You chose your voice.",
-    description:
-      "Singing wasn't just about music. It was about having the courage to let the world hear a part of you.",
-  },
-  {
-    year: "🎥",
-    title: "You started creating.",
-    description:
-      "Creating content meant believing that your thoughts, your creativity, and your perspective deserved to exist beyond your own mind.",
-  },
-  {
-    year: "🌱",
-    title: "You chose discipline.",
-    description:
-      "Your niyamas weren't about perfection. They were quiet promises you made to yourself, and I admired how sincerely you tried to honor them.",
-  },
-  {
-    year: "✨",
-    title: "You kept becoming.",
-    description:
-      "The most inspiring thing about you isn't where you've reached. It's that you never stop growing.",
-  },
-];
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function Becoming() {
   return (
@@ -44,16 +19,16 @@ export default function Becoming() {
           viewport={{ once: true }}
           className="text-center uppercase tracking-[0.45em] text-zinc-500"
         >
-          Chapter X
+          {story.becoming.chapter}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-6 text-center font-serif text-6xl md:text-8xl"
+          className="mt-6 text-center font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Becoming
+          {story.becoming.title}
         </motion.h2>
 
         <motion.p
@@ -63,17 +38,17 @@ export default function Becoming() {
           transition={{ delay: 0.2 }}
           className="mx-auto mt-10 max-w-3xl text-center text-xl leading-9 text-zinc-400"
         >
-          The beautiful thing isn't who you are today.
+          {story.becoming.intro[0]}
           <br />
-          It's how intentionally you're becoming who you dream of being.
+          {story.becoming.intro[1]}
         </motion.p>
 
         <div className="relative mx-auto mt-28 max-w-4xl">
           <div className="absolute left-6 top-0 h-full w-px bg-zinc-800" />
 
-          {milestones.map((item, index) => (
+          {story.becoming.milestones.map((item, index) => (
             <motion.div
-              key={item.title}
+              key={item.id}
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.4 }}
@@ -81,7 +56,7 @@ export default function Becoming() {
               className="relative mb-24 pl-20"
             >
               <div className="absolute left-0 top-2 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-xl backdrop-blur-md">
-                {item.year}
+                {item.emoji}
               </div>
 
               <h3 className="font-serif text-4xl text-white">{item.title}</h3>
@@ -97,18 +72,20 @@ export default function Becoming() {
           transition={{ delay: 0.8 }}
           className="mx-auto mt-16 max-w-3xl text-center"
         >
-          <p className="font-serif text-4xl leading-relaxed text-white md:text-5xl">Promise me one thing.</p>
+          <p className="font-serif text-4xl leading-relaxed text-white md:text-5xl">{story.becoming.promise}</p>
 
           <p className="mt-8 text-2xl leading-relaxed text-zinc-300">
-            Years from now,
-            when you finally become
-            the person you're working so hard to be...
+            {story.becoming.closing.map((line) => <span key={line}>{line} </span>)}
           </p>
 
           <p className="mt-10 text-3xl font-serif text-emerald-300">
-            Don't forget how far you've already come.
+            {story.becoming.finalLine}
           </p>
         </motion.div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.becoming.next} />
+        </div>
       </div>
     </Section>
   );

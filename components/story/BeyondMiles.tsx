@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
 import RevealText from "./RevealText";
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function BeyondMiles() {
   return (
@@ -26,7 +28,7 @@ export default function BeyondMiles() {
           viewport={{ once: true }}
           className="uppercase tracking-[0.45em] text-zinc-500"
         >
-          Chapter VI
+          {story.beyondMiles.chapter}
         </motion.p>
 
         <motion.h2
@@ -34,18 +36,18 @@ export default function BeyondMiles() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-6 font-serif text-6xl md:text-8xl"
+          className="mt-6 font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Beyond Miles
+          {story.beyondMiles.title}
         </motion.h2>
 
         <div className="mt-24 space-y-14">
           <RevealText delay={0.2} className="text-2xl leading-relaxed text-zinc-300 md:text-4xl">
-            We never really needed the same place...
+            {story.beyondMiles.opening[0]}
           </RevealText>
 
           <RevealText delay={1.2} className="text-2xl leading-relaxed text-zinc-300 md:text-4xl">
-            to feel like we were never far apart.
+            {story.beyondMiles.opening[1]}
           </RevealText>
 
           <motion.div
@@ -55,21 +57,21 @@ export default function BeyondMiles() {
             transition={{ delay: 2 }}
             className="py-10"
           >
-            <div className="text-7xl md:text-8xl">📍──────────────📍</div>
+            <div className="max-w-full overflow-hidden text-xl sm:text-5xl md:text-8xl">{story.beyondMiles.route}</div>
 
-            <p className="mt-6 text-xs uppercase tracking-[0.35em] text-zinc-500">Different Cities</p>
+            <p className="mt-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{story.beyondMiles.routeLabel}</p>
           </motion.div>
 
           <RevealText delay={2.8} className="text-xl leading-relaxed text-zinc-400 md:text-3xl">
-            Some of our best conversations happened through a screen.
+            {story.beyondMiles.lines[0]}
           </RevealText>
 
           <RevealText delay={3.8} className="text-xl leading-relaxed text-zinc-300 md:text-3xl">
-            Somehow, a call could make an ordinary day lighter...
+            {story.beyondMiles.lines[1]}
           </RevealText>
 
           <RevealText delay={4.8} className="text-xl leading-relaxed text-zinc-300 md:text-3xl">
-            ...and a difficult one feel a little less heavy.
+            {story.beyondMiles.lines[2]}
           </RevealText>
 
           <motion.div
@@ -79,13 +81,17 @@ export default function BeyondMiles() {
             transition={{ delay: 5.8 }}
             className="pt-12"
           >
-            <p className="font-serif text-4xl text-white md:text-6xl">Distance</p>
-            <p className="mt-4 text-lg text-zinc-500">was never measured in kilometers.</p>
+            <p className="font-serif text-4xl text-white md:text-6xl">{story.beyondMiles.distanceTitle}</p>
+            <p className="mt-4 text-lg text-zinc-500">{story.beyondMiles.distanceSubtitle}</p>
           </motion.div>
 
           <RevealText delay={6.8} className="text-xl leading-relaxed text-zinc-300 md:text-3xl">
-            It was measured by how often we chose to be there for each other.
+            {story.beyondMiles.closing}
           </RevealText>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.beyondMiles.next} />
         </div>
       </div>
     </Section>

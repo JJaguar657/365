@@ -3,25 +3,8 @@
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
 import RevealText from "./RevealText";
-
-const pillars = [
-  {
-    title: "Trust",
-    text: "Somehow, being honest with you always felt effortless.",
-  },
-  {
-    title: "Comfort",
-    text: "Even ordinary conversations could turn an exhausting day into a lighter one.",
-  },
-  {
-    title: "Support",
-    text: "You reminded me that showing up for someone is often louder than words.",
-  },
-  {
-    title: "Home",
-    text: "Some people become familiar places. You became one of mine.",
-  },
-];
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function Trust() {
   return (
@@ -37,7 +20,7 @@ export default function Trust() {
           viewport={{ once: true }}
           className="text-center uppercase tracking-[0.4em] text-zinc-500"
         >
-          Chapter III
+          {story.trust.chapter}
         </motion.p>
 
         <motion.h2
@@ -45,15 +28,15 @@ export default function Trust() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-6 text-center font-serif text-6xl md:text-8xl"
+          className="mt-6 text-center font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Trust
+          {story.trust.title}
         </motion.h2>
 
         <div className="mt-24 grid gap-8 md:grid-cols-2">
-          {pillars.map((item, index) => (
+          {story.trust.pillars.map((item, index) => (
             <motion.div
-              key={item.title}
+              key={item.id}
               initial={{
                 opacity: 0,
                 y: 40,
@@ -86,8 +69,12 @@ export default function Trust() {
             delay={0.4}
             className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-zinc-300 md:text-3xl"
           >
-            I don't know exactly when it happened, but somewhere along the way, you stopped being just someone I knew... and quietly became someone I genuinely trust.
+            {story.trust.closing}
           </RevealText>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.trust.next} />
         </div>
       </div>
     </Section>

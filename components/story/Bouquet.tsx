@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Flower from "./Flower";
 import type { FlowerData } from "./Gallery";
+import { story } from "@/content/story";
 
 interface BouquetProps {
   opened: boolean;
@@ -13,107 +14,152 @@ interface BouquetProps {
 }
 
 const positions = [
-  { x: -260, y: 90, rotate: -28 },
-  { x: -165, y: 10, rotate: -18 },
-  { x: -70, y: -80, rotate: -8 },
-  { x: 0, y: -150, rotate: 0 },
-  { x: 70, y: -80, rotate: 8 },
-  { x: 165, y: 10, rotate: 18 },
-  { x: 260, y: 90, rotate: 28 },
-  { x: 0, y: 180, rotate: 0 },
+  // Hero
+  {
+    x: 0,
+    y: -240,
+    rotate: 0,
+    scale: 1.18,
+    z: 80,
+  },
+
+  // Upper
+  {
+    x: -125,
+    y: -160,
+    rotate: -14,
+    scale: 1.05,
+    z: 65,
+  },
+
+  {
+    x: 125,
+    y: -160,
+    rotate: 14,
+    scale: 1.05,
+    z: 65,
+  },
+
+  // Middle
+
+  {
+    x: -230,
+    y: -40,
+    rotate: -24,
+    scale: .92,
+    z: 35,
+  },
+
+  {
+    x: -70,
+    y: -20,
+    rotate: -8,
+    scale: 1,
+    z: 55,
+  },
+
+  {
+    x: 70,
+    y: -20,
+    rotate: 8,
+    scale: 1,
+    z: 55,
+  },
+
+  {
+    x: 230,
+    y: -40,
+    rotate: 24,
+    scale: .92,
+    z: 35,
+  },
+
+  // Hidden flower
+
+  {
+    x: 0,
+    y: 110,
+    rotate: 0,
+    scale: .84,
+    z: 20,
+  },
+  {
+x:0,
+y:150,
+rotate:0,
+scale:.8,
+z:15
+}
 ];
 
 export default function Bouquet({ opened, flowers, focusMode, selectedFlower, onFlowerClick }: BouquetProps) {
   return (
-    <div className="relative h-[900px] w-[900px]">
+    <div className="relative h-[700px] w-[min(900px,94vw)] scale-[.72] sm:scale-[.82] md:scale-100">
       {!opened && (
         <motion.div
-          initial={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 0.94 }}
+          transition={{ duration: 0.7 }}
           className="absolute inset-0 flex items-end justify-center"
         >
-          <div className="relative h-[500px] w-[380px]">
-            <motion.div
-              className="absolute bottom-0 left-0 h-[430px] w-[220px] origin-bottom-right rounded-t-3xl bg-stone-200 shadow-2xl"
-              style={{ clipPath: "polygon(0 0,100% 15%,80% 100%,0 100%)" }}
-            />
-
-            <motion.div
-              className="absolute bottom-0 right-0 h-[430px] w-[220px] origin-bottom-left rounded-t-3xl bg-stone-100 shadow-2xl"
-              style={{ clipPath: "polygon(0 15%,100% 0,100% 100%,20% 100%)" }}
-            />
-
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2">
-              <div className="relative flex items-center justify-center">
-                <div className="h-12 w-48 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 shadow-xl" />
-                <div className="absolute text-sm font-semibold uppercase tracking-[0.4em] text-white">FOR YOU</div>
-              </div>
-            </div>
+          <div className="relative h-[470px] w-[440px]">
+            <div className="absolute inset-x-0 bottom-0 h-[420px] bg-[linear-gradient(135deg,#b96e78,#f6dcc6_48%,#bd747a)] shadow-[0_30px_80px_rgba(0,0,0,.45)]" style={{ clipPath: "polygon(5% 4%,95% 4%,82% 100%,18% 100%)" }} />
+            <div className="absolute inset-x-6 bottom-32 h-20 rounded-full border border-white/30 bg-rose-900/30 shadow-[0_8px_18px_rgba(72,16,29,.35)]" />
+            <p className="absolute inset-x-0 bottom-[10.4rem] text-center text-xs font-semibold tracking-[.55em] text-white">{story.gallery.giftLabel}</p>
+            <div className="absolute bottom-10 left-1/2 h-3 w-32 -translate-x-1/2 rounded-full bg-[#8d384f] shadow-lg" />
           </div>
         </motion.div>
       )}
 
       {opened && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0"
-        >
-          <motion.div
-            initial={{ rotate: 0, x: 0 }}
-            animate={{ rotate: focusMode ? -20 : -20, x: focusMode ? -95 : -95, opacity: focusMode ? 0 : 0.95 }}
-            transition={{ type: "spring", stiffness: 60, damping: 15 }}
-            className="absolute bottom-0 left-[245px] h-[470px] w-[230px] origin-bottom-right rounded-t-3xl bg-stone-200 shadow-2xl"
-            style={{ clipPath: "polygon(0 0,100% 15%,80% 100%,0 100%)" }}
-          />
-
-          <motion.div
-            initial={{ rotate: 0, x: 0 }}
-            animate={{ rotate: focusMode ? 20 : 20, x: focusMode ? 95 : 95, opacity: focusMode ? 0 : 0.95 }}
-            transition={{ type: "spring", stiffness: 60, damping: 15 }}
-            className="absolute bottom-0 right-[245px] h-[470px] w-[230px] origin-bottom-left rounded-t-3xl bg-stone-100 shadow-2xl"
-            style={{ clipPath: "polygon(0 15%,100% 0,100% 100%,20% 100%)" }}
-          />
-
-          <motion.div
-            initial={{ opacity: 1, y: 0, rotate: 0 }}
-            animate={{ opacity: focusMode ? 0 : 0, y: 120, rotate: 40 }}
-            transition={{ duration: 0.9 }}
-            className="absolute bottom-40 left-1/2 z-20 -translate-x-1/2"
-          >
-            <div className="h-12 w-48 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 shadow-xl" />
-          </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.75 }} className="absolute inset-0">
+          <div className="absolute bottom-[3.5rem] left-1/2 h-[360px] w-[520px] -translate-x-1/2 rounded-[50%] bg-amber-200/15 blur-3xl" />
 
           {flowers.map((flower, index) => {
-            const isCenter = flower.id === 4;
-            const selected = selectedFlower?.id === flower.id;
-
+            const position = positions[index];
             return (
               <Flower
-                key={flower.id}
+                key={`${flower.id}-stems`}
                 flower={flower}
-                rotate={positions[index].rotate}
-                x={positions[index].x}
-                y={isCenter ? positions[index].y - 30 : positions[index].y}
-                delay={index * 0.18}
+                rotate={position.rotate}
+                x={position.x}
+                y={position.y}
+                scale={position.scale}
+                zIndex={position.z}
+                delay={index * 0.13}
                 focused={focusMode}
-                selected={selected}
+                selected={selectedFlower?.id === flower.id}
+                layer="stems"
                 onClick={() => onFlowerClick(flower)}
               />
             );
           })}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: focusMode ? 0 : 0.9 }}
-            transition={{ delay: 0.4 }}
-            className="absolute bottom-0 left-1/2 h-[230px] w-[340px] -translate-x-1/2 bg-gradient-to-b from-stone-300 to-stone-500 shadow-2xl"
-            style={{ clipPath: "polygon(18% 0%,82% 0%,100% 100%,0% 100%)" }}
-          />
+          <motion.div animate={{ opacity: focusMode ? 0 : 1 }} transition={{ duration: 0.35 }} className="absolute inset-0 z-[90] pointer-events-none">
+            <div className="absolute bottom-[3.7rem] left-1/2 flex min-h-10 w-[min(240px,calc(100vw-2rem))] -translate-x-1/2 items-center justify-center rounded-full border border-rose-100/50 bg-[linear-gradient(180deg,#b64161,#7d203d)] px-4 py-2 shadow-[0_12px_24px_rgba(83,16,39,.4)] sm:w-[220px]">
+              <span className="text-center text-[8px] font-semibold leading-tight tracking-[.12em] text-rose-50 sm:text-[9px] sm:tracking-[.18em]">{story.gallery.ribbon}</span>
+            </div>
+          </motion.div>
 
-          <div className="absolute bottom-36 left-1/2 h-1 w-44 -translate-x-1/2 rounded-full bg-amber-300" />
+          {flowers.map((flower, index) => {
+            const position = positions[index];
+            return (
+              <Flower
+                key={`${flower.id}-bloom`}
+                flower={flower}
+                rotate={position.rotate}
+                x={position.x}
+                y={position.y}
+                scale={position.scale}
+                zIndex={position.z}
+                delay={index * 0.13}
+                focused={focusMode}
+                selected={selectedFlower?.id === flower.id}
+                layer="bloom"
+                onClick={() => onFlowerClick(flower)}
+              />
+            );
+          })}
         </motion.div>
       )}
     </div>

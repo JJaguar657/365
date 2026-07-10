@@ -3,25 +3,8 @@
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
 import RevealText from "./RevealText";
-
-const messages = [
-  {
-    side: "left",
-    text: "It all started with ordinary conversations.",
-  },
-  {
-    side: "right",
-    text: "Then somehow... those conversations became part of my day.",
-  },
-  {
-    side: "left",
-    text: "The kind where silence was never awkward.",
-  },
-  {
-    side: "right",
-    text: "The kind where even random moments became memories.",
-  },
-];
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function Conversations() {
   return (
@@ -33,7 +16,7 @@ export default function Conversations() {
           viewport={{ once: true }}
           className="mb-6 text-center uppercase tracking-[0.4em] text-zinc-500"
         >
-          Chapter II
+          {story.conversations.chapter}
         </motion.p>
 
         <motion.h2
@@ -41,15 +24,15 @@ export default function Conversations() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center font-serif text-6xl md:text-8xl"
+          className="text-center font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Conversations
+          {story.conversations.title}
         </motion.h2>
 
         <div className="mt-20 space-y-8">
-          {messages.map((message, index) => (
+          {story.conversations.messages.map((message, index) => (
             <motion.div
-              key={index}
+              key={message.id}
               initial={{
                 opacity: 0,
                 x: message.side === "left" ? -60 : 60,
@@ -79,8 +62,12 @@ export default function Conversations() {
             delay={0.3}
             className="text-center text-2xl leading-relaxed text-zinc-300 md:text-3xl"
           >
-            Somewhere between the jokes, the random conversations, and the endless messages... I found a friend I never expected to mean this much.
+            {story.conversations.closing}
           </RevealText>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.conversations.next} />
         </div>
       </div>
     </Section>

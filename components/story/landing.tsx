@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import MouseGlow from "./MouseGlow";
-import ParticleBackground from "./ParticleBackground";
+import MouseGlow from "./mouseglow";
+import ParticleBackground from "./particlebackground";
 import RevealText from "./RevealText";
+import { story } from "@/content/story";
 
 export default function Landing() {
   const [loaded, setLoaded] = useState(false);
@@ -32,9 +33,9 @@ export default function Landing() {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1 }}
-            className="font-serif text-8xl md:text-9xl"
+            className="font-serif text-6xl sm:text-8xl md:text-9xl"
           >
-            365
+            {story.landing.preloaderTitle}
           </motion.h1>
 
           <motion.p
@@ -43,7 +44,7 @@ export default function Landing() {
             transition={{ delay: 1 }}
             className="mt-6 text-sm tracking-[0.35em] uppercase text-zinc-400"
           >
-            Loading memories...
+            {story.landing.loadingLabel}
           </motion.p>
         </motion.div>
       </section>
@@ -84,9 +85,9 @@ export default function Landing() {
           transition={{
             duration: 1.2,
           }}
-          className="font-serif text-8xl md:text-[11rem] tracking-wide"
+          className="font-serif text-6xl sm:text-8xl md:text-[11rem] tracking-wide"
         >
-          365
+          {story.landing.title}
         </motion.h1>
 
         <div className="mt-12 space-y-10 text-center">
@@ -94,21 +95,21 @@ export default function Landing() {
             delay={0.5}
             className="text-xl leading-relaxed text-zinc-300 md:text-3xl"
           >
-            Exactly one year ago, you were just another person I&apos;d yet to know.
+            {story.landing.lines[0].text}
           </RevealText>
 
           <RevealText
             delay={1.5}
             className="text-xl leading-relaxed text-zinc-300 md:text-3xl"
           >
-            Today... you&apos;re one of the people I trust the most.
+            {story.landing.lines[1].text}
           </RevealText>
 
           <RevealText
             delay={2.5}
             className="text-lg leading-relaxed text-zinc-500 md:text-xl"
           >
-            Funny how an ordinary year quietly became one of the most beautiful chapters of my life.
+            {story.landing.lines[2].text}
           </RevealText>
         </div>
 
@@ -125,10 +126,10 @@ export default function Landing() {
           }}
           className="group mt-16 rounded-full border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-xl transition-all duration-500 hover:border-rose-400 hover:bg-white hover:text-black"
         >
-          Begin the story
+          {story.landing.button}
 
           <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-2">
-            →
+            {story.landing.buttonArrow}
           </span>
         </motion.button>
       </div>
@@ -137,9 +138,9 @@ export default function Landing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.25 }}
         transition={{ delay: 3 }}
-        className="absolute bottom-8 right-8 text-xs uppercase tracking-[0.35em] text-zinc-600"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-[0.16em] text-zinc-600 sm:left-auto sm:right-8 sm:translate-x-0 sm:text-xs sm:tracking-[0.35em]"
       >
-        July 2025 — July 2026
+        {story.landing.dateRange}
       </motion.div>
 
       <motion.div

@@ -2,37 +2,8 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
-
-const truths = [
-  {
-    title: "You care deeply.",
-    body: "Sometimes more than people ever realize.",
-  },
-  {
-    title: "You celebrate others.",
-    body: "Even when you're quietly fighting your own battles.",
-  },
-  {
-    title: "You think you're ordinary.",
-    body: "But ordinary people don't leave this kind of impact on someone's life.",
-  },
-  {
-    title: "You overthink your flaws.",
-    body: "Yet you rarely notice how much comfort you bring to others.",
-  },
-  {
-    title: "You inspire quietly.",
-    body: "Not through speeches, but through the way you keep showing up and becoming a better version of yourself.",
-  },
-  {
-    title: "Your kindness isn't loud.",
-    body: "That's exactly what makes it beautiful.",
-  },
-  {
-    title: "You don't try to be unforgettable.",
-    body: "Yet somehow... you are.",
-  },
-];
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function ThroughMyEyes() {
   return (
@@ -46,29 +17,29 @@ export default function ThroughMyEyes() {
           viewport={{ once: true }}
           className="text-center uppercase tracking-[0.45em] text-zinc-500"
         >
-          Chapter IX
+          {story.throughMyEyes.chapter}
         </motion.p>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-6 text-center font-serif text-5xl md:text-7xl"
+          className="mt-6 text-center font-serif text-3xl text-balance sm:text-5xl md:text-7xl"
         >
-          If You Could See Yourself Through My Eyes
+          {story.throughMyEyes.title}
         </motion.h2>
 
         <div className="mt-24 space-y-24">
-          {truths.map((truth, index) => (
+          {story.throughMyEyes.truths.map((truth, index) => (
             <motion.div
-              key={truth.title}
+              key={truth.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
               className="text-center"
             >
-              <h3 className="font-serif text-4xl text-white md:text-5xl">{truth.title}</h3>
+              <h3 className="font-serif text-3xl text-white sm:text-4xl md:text-5xl">{truth.title}</h3>
               <p className="mx-auto mt-6 max-w-3xl text-xl leading-9 text-zinc-400 md:text-2xl">{truth.body}</p>
             </motion.div>
           ))}
@@ -81,10 +52,14 @@ export default function ThroughMyEyes() {
           transition={{ delay: 1 }}
           className="mt-32 text-center font-serif text-3xl text-rose-300 md:text-4xl"
         >
-          I just hope... one day,
+          {story.throughMyEyes.closing[0]}
           <br />
-          you see yourself the way the people who love you already do.
+          {story.throughMyEyes.closing[1]}
         </motion.p>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.throughMyEyes.next} />
+        </div>
       </div>
     </Section>
   );

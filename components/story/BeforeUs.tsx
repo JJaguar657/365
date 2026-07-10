@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
 import RevealText from "./RevealText";
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function BeforeUs() {
   return (
@@ -32,7 +34,7 @@ export default function BeforeUs() {
           }}
           className="mb-12 uppercase tracking-[0.35em] text-zinc-500"
         >
-          Chapter I
+          {story.beforeUs.chapter}
         </motion.p>
 
         <motion.h2
@@ -47,9 +49,9 @@ export default function BeforeUs() {
           transition={{
             duration: 1,
           }}
-          className="font-serif text-6xl md:text-8xl"
+          className="font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Before Us
+          {story.beforeUs.title}
         </motion.h2>
 
         <div className="mt-16 space-y-10">
@@ -57,22 +59,26 @@ export default function BeforeUs() {
             delay={0.2}
             className="text-2xl leading-relaxed text-zinc-300 md:text-3xl"
           >
-            Every meaningful story begins with two strangers.
+            {story.beforeUs.lines[0].text}
           </RevealText>
 
           <RevealText
             delay={1.2}
             className="text-xl leading-relaxed text-zinc-500 md:text-2xl"
           >
-            Ours began so quietly that neither of us could have guessed what it would become.
+            {story.beforeUs.lines[1].text}
           </RevealText>
 
           <RevealText
             delay={2.4}
             className="text-xl leading-relaxed text-zinc-400 md:text-2xl"
           >
-            We didn't know we were meeting someone who would eventually become one of the safest places in each other's lives.
+            {story.beforeUs.lines[2].text}
           </RevealText>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.beforeUs.next} />
         </div>
       </div>
 
@@ -88,7 +94,7 @@ export default function BeforeUs() {
         }}
         className="absolute bottom-14 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.45em] text-zinc-600"
       >
-        Keep Scrolling
+        {story.beforeUs.scrollHint}
       </motion.div>
     </Section>
   );

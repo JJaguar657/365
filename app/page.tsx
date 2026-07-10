@@ -1,4 +1,4 @@
-import Landing from "@/components/story/Landing";
+import Landing from "@/components/story/landing";
 import BeforeUs from "@/components/story/BeforeUs";
 import Conversations from "@/components/story/Conversations";
 import Trust from "@/components/story/Trust";
@@ -9,6 +9,7 @@ import Letter from "@/components/story/Letter";
 import ThroughMyEyes from "@/components/story/ThroughMyEyes";
 import Becoming from "@/components/story/Becoming";
 import Gallery from "@/components/story/Gallery";
+import BirthdayFinale from "@/components/story/BirthdayFinale";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <ThroughMyEyes />
       <Becoming />
       <Gallery />
+      <BirthdayFinale />
     </main>
   );
 }

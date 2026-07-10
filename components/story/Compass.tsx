@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Section from "@/components/layout/Section";
 import RevealText from "./RevealText";
+import { story } from "@/content/story";
+import ChapterNext from "./ChapterNext";
 
 export default function Compass() {
   return (
@@ -36,7 +38,7 @@ export default function Compass() {
           viewport={{ once: true }}
           className="uppercase tracking-[0.4em] text-zinc-500"
         >
-          Chapter V
+          {story.compass.chapter}
         </motion.p>
 
         <motion.h2
@@ -44,22 +46,22 @@ export default function Compass() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-6 font-serif text-6xl md:text-8xl"
+          className="mt-6 font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          Compass
+          {story.compass.title}
         </motion.h2>
 
         <div className="mt-24 space-y-16">
           <RevealText delay={0.2} className="text-2xl leading-relaxed text-zinc-300 md:text-4xl">
-            Life has a funny way of making us question our own direction.
+            {story.compass.lines[0].text}
           </RevealText>
 
           <RevealText delay={1} className="text-xl leading-relaxed text-zinc-400 md:text-3xl">
-            There were days when I wasn't searching for answers. I was simply trying to make sense of everything around me.
+            {story.compass.lines[1].text}
           </RevealText>
 
           <RevealText delay={2} className="text-xl leading-relaxed text-zinc-300 md:text-3xl">
-            You never told me what path to take.
+            {story.compass.lines[2].text}
           </RevealText>
 
           <motion.div
@@ -69,31 +71,35 @@ export default function Compass() {
             transition={{ delay: 3 }}
             className="flex flex-wrap justify-center gap-4 text-2xl font-light md:text-4xl"
           >
-            {['You', 'listened.', 'Questioned.', 'Encouraged.', 'Stayed.'].map((word, index) => (
+            {story.compass.sequence.map((word, index) => (
               <motion.span
-                key={word}
+                key={word.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.35, duration: 0.5 }}
-                className={word === 'Stayed.' ? 'font-medium text-rose-400' : 'text-zinc-200'}
+                className={word.emphasized ? 'font-medium text-rose-400' : 'text-zinc-200'}
               >
-                {word}
+                {word.text}
               </motion.span>
             ))}
           </motion.div>
 
           <RevealText delay={5} className="text-xl leading-relaxed text-zinc-300 md:text-3xl">
-            Somewhere along the way, without even realizing it, I started finding my own direction again.
+            {story.compass.ending[0].text}
           </RevealText>
 
           <RevealText delay={6.5} className="text-2xl font-serif leading-relaxed text-white md:text-4xl">
-            A compass never decides where you should go. It simply reminds you where north is.
+            {story.compass.ending[1].text}
           </RevealText>
 
           <RevealText delay={8} className="mx-auto max-w-3xl text-lg leading-relaxed text-zinc-400 md:text-2xl">
-            Thank you for never trying to write my story... only for helping me become a better author of it.
+            {story.compass.ending[2].text}
           </RevealText>
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <ChapterNext {...story.compass.next} />
         </div>
       </div>
 
@@ -104,7 +110,7 @@ export default function Compass() {
         transition={{ delay: 8 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.45em] text-zinc-600"
       >
-        Keep Going
+        {story.compass.scrollHint}
       </motion.div>
     </Section>
   );

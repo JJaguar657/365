@@ -8,62 +8,28 @@ import Section from "@/components/layout/Section";
 import Bouquet from "./Bouquet";
 import FlowerModal from "./FlowerModal";
 import Petals from "./Petals";
+import { story } from "@/content/story";
 
 export interface FlowerData {
   id: number;
   src: string;
+  alt: string;
   caption: string;
   type?: "image" | "video";
+  poster?: string;
+  placeholder?: boolean;
 }
 
 const flowers: FlowerData[] = [
   {
-    id: 1,
-    src: "/photos/1.jpg",
-    caption:
-      "You smiled... and somehow the whole picture smiled with you.",
-  },
-  {
-    id: 2,
-    src: "/photos/2.jpg",
-    caption:
-      "Some people pose for pictures. You simply exist beautifully in them.",
-  },
-  {
-    id: 3,
-    src: "/photos/3.jpg",
-    caption:
-      "I still don't know how you make ordinary moments look unforgettable.",
-  },
-  {
-    id: 4,
-    src: "/photos/4.jpg",
-    caption:
-      "If happiness had a face, I think it would look something like this.",
-  },
-  {
-    id: 5,
-    src: "/photos/5.jpg",
-    caption:
-      "This is one of those smiles I hope life never takes away from you.",
-  },
-  {
-    id: 6,
-    src: "/photos/6.jpg",
-    caption:
-      "Every version of you has been beautiful, but watching you become yourself has been my favourite.",
-  },
-  {
-    id: 7,
-    src: "/photos/7.jpg",
-    caption: "Some memories don't need dates. They simply stay.",
-  },
-  {
-    id: 8,
-    src: "/photos/video.jpg",
-    caption: "This one has something to tell you...",
+    id: story.video.id,
+    src: story.video.src,
+    alt: story.video.alt,
     type: "video",
+    placeholder: story.video.placeholder,
+    caption: story.video.caption,
   },
+  ...story.gallery.photos.map((photo) => ({ ...photo, type: "image" as const })),
 ];
 
 export default function Gallery() {
@@ -90,7 +56,7 @@ export default function Gallery() {
   return (
     <Section
       id="gallery"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-32"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20 sm:px-6 sm:py-32"
     >
       <div className="absolute inset-0 bg-[#070707]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,.06),transparent_65%)]" />
@@ -103,9 +69,9 @@ export default function Gallery() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center uppercase tracking-[0.5em] text-zinc-500"
+          className="text-center text-[10px] uppercase tracking-[0.2em] text-zinc-500 sm:text-base sm:tracking-[0.5em]"
         >
-          Chapter XI
+          {story.gallery.chapter}
         </motion.p>
 
         <motion.h2
@@ -113,9 +79,9 @@ export default function Gallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-6 text-center font-serif text-6xl md:text-8xl"
+          className="mt-6 text-center font-serif text-4xl text-balance sm:text-6xl md:text-8xl"
         >
-          A Bouquet
+          {story.gallery.title}
         </motion.h2>
 
         <AnimatePresence mode="wait">
@@ -133,7 +99,7 @@ export default function Gallery() {
                 transition={{ delay: 0.3 }}
                 className="font-serif text-3xl text-white md:text-5xl"
               >
-                Every flower reminded me of you.
+                {story.gallery.intro[0]}
               </motion.p>
 
               <motion.p
@@ -142,7 +108,7 @@ export default function Gallery() {
                 transition={{ delay: 1.4 }}
                 className="mt-6 text-zinc-400"
               >
-                So I made the flowers...
+                {story.gallery.intro[1]}
               </motion.p>
 
               <motion.p
@@ -151,7 +117,7 @@ export default function Gallery() {
                 transition={{ delay: 2 }}
                 className="mt-1 font-serif text-4xl text-rose-300"
               >
-                You.
+                {story.gallery.intro[2]}
               </motion.p>
             </motion.div>
           )}
@@ -181,7 +147,7 @@ export default function Gallery() {
               className="mt-10 text-center"
             >
               <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">
-                Click a flower
+                {story.gallery.clickHint}
               </p>
             </motion.div>
           )}
